@@ -11,6 +11,7 @@ import '../stylesheets/modal.css';
 import '../stylesheets/regForm.css';
 
 var app = {
+	storage: 'dentsu',
 	pages: null, // array of pages
 	params: {}, // params in query string
 	q: [], // array of questions
@@ -38,7 +39,7 @@ var app = {
 	initResult(state, couponLink) {
 		if (state == 'win') {
 			document.getElementById('resultTitle').innerHTML = "おめでとうございます！";
-			document.getElementById('resultDescription').innerHTML = "サラダスムージーが当たりました。";
+			document.getElementById('resultDescription').innerHTML = "いち髪シャンプーが当たりました。";
 			if (user.isWanderer) {
 				document.getElementById('couponLink').style.display = 'none';
 				document.getElementById('resultInstruction').style.display = 'none;'
@@ -118,9 +119,13 @@ var app = {
 	continue: function() {
 		var answerJson = '{}';
 		if (localStorage.getItem('localAnswers')) {
-			answerJson = localStorage.getItem('localAnswers');
+			var temp = JSON.parse(localStorage.getItem('localAnswers'));
+			if (temp[this.storage] != 'undefined') {
+				answerJson = temp[this.storage];
+			}
 		}
-		var localAnswers = JSON.parse(answerJson);
+
+		var localAnswers = answerJson;
 		var userAnswers = [];
 		var noQuestionAnswered = 0;
 		if (localAnswers) {
@@ -371,7 +376,12 @@ var app = {
 							qArray[n] = this.q[n].selectedAnswer;
 						}
 			  	}
-			  	localAnswers[user.info.id] = qArray;
+
+			  	if (typeof localAnswers[this.storage] == 'undefined') {
+			  		localAnswers[this.storage] = {};
+			  	}
+
+			  	localAnswers[this.storage][user.info.id] = qArray;
 			  	localStorage.setItem('localAnswers', JSON.stringify(localAnswers));
 	  		}
 	  		var qNo = parseInt(e.target.dataset.question);
@@ -591,7 +601,7 @@ var app = {
         height: vidHeight.toString(),
         width: vidWidth.toString(),
         playerVars: {'rel': 0,'showinfo': 0, 'controls': 0, 'playsinline': 1},
-        videoId: 'wfxBX7Gwngg',
+        videoId: 'MBcMKk2Q1Ms',
         events: {
           'onStateChange': (event) => {
             if (event.data == YT.PlayerState.ENDED) {

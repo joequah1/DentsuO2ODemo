@@ -72,54 +72,6 @@ var user = {
 				}
 		  });
     });
-    /*return new Promise(function(resolve, reject) {
-			var localUser = [];
-			if (typeof(Storage) !== "undefined") {
-				if (window.localStorage.localUser) {
-					localUser = JSON.parse(window.localStorage.localUser);
-				}
-				else {
-					window.localStorage.localUser = JSON.stringify(localUser);
-				}
-				
-				var found = false;
-				for (var u = 0; u < localUser.length; u++) {
-					if (localUser[u].id == userId) {
-						found = true;
-						resolve({
-							data: {
-								message: "retrieved.",
-								user:{
-									couponLink: localUser[u].couponLink,
-									Answers: localUser[u].Answers,
-									noQuestionAnswered: localUser[u].noQuestionAnswered,
-									id: localUser[u].id,
-									state: localUser[u].state
-								},
-								status: true
-							}
-						});
-					}
-				}
-
-				if (!found) {
-					resolve({
-						data: {
-							message: "not registered.",
-							status: false
-						}
-					});
-				}
-			}
-			else {
-				reject({
-					data: {
-						message: 'error',
-						status: false
-					}
-				})
-			}
-    });*/
 	},
 	register: function(userId) {
 		// var regForm = new FormData();
@@ -172,58 +124,6 @@ var user = {
 				}
 			});
 		});
-
-
-
-		/*return new Promise(function(resolve, reject) {
-			var localUser = [];
-			if (typeof(Storage) !== "undefined") {
-				if (window.localStorage.localUser) {
-					localUser = JSON.parse(window.localStorage.localUser);
-				}
-				else {
-					window.localStorage.localUser = JSON.stringify(localUser);
-				}
-				var found = false;
-				for (var u = 0; u < localUser.length; u++) {
-					if (localUser[u].id == userId) {
-						found = true;
-						resolve({
-							data: {
-								message: "user exist.",
-								status: false
-							}
-						});
-					}
-				}
-				
-				if (!found) {
-					localUser.push({
-						id: userId,
-						couponLink: '',
-						Answers: '{}',
-						noQuestionAnswered: 0,
-						state: '-'
-					});
-					var userJson = JSON.stringify(localUser);
-					window.localStorage.localUser = userJson;
-				  resolve({
-						data: {
-							message: "registration success.",
-							status: true
-						}
-					});
-				}
-		  }
-		  else {
-				reject({
-					data: {
-						message: 'error',
-						status: false
-					}
-				});
-		  }   	
-    });*/
 	},
 	trackRegister: function(userId) {
     // track as impression
@@ -407,52 +307,6 @@ var user = {
 		    }
 		  });
 		});
-
-
-		/*return new Promise(function(resolve, reject) {
-			var localUser = [];
-			if (typeof(Storage) !== "undefined") {
-				if (window.localStorage.localUser) {
-					localUser = JSON.parse(window.localStorage.localUser);
-				}
-				else {
-					window.localStorage.localUser = JSON.stringify(localUser);
-				}
-
-				var found = false;
-				for (var u = 0; u < localUser.length; u++) {
-					if (localUser[u].id == userId) {
-						found = true;
-						localUser[u].state = 'lose';
-						var userJson = JSON.stringify(localUser);
-						window.localStorage.localUser = userJson;
-						resolve({
-							data: {
-								message: "marked.",
-								status:true
-							}
-						});
-					}
-				}
-
-				if (!found) {
-					resolve({
-						data: {
-							message: "user not found!",
-							status: false
-						}
-					})
-				}
-			}
-			else {
-				reject({
-					data: {
-						message: 'error',
-						status: false
-					}
-				});
-		  } 
-		});*/
 	},
 	passResult: function(userId, flag, source, couponLink) { // flag: 1 = win, 0 = lose
 		var psForm = new FormData();
